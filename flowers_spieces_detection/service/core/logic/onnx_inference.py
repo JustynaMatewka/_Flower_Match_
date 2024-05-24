@@ -8,7 +8,7 @@ def flower_detector(img_array):
         img_array = cv2.cvtColor(img_array, cv2.COLOR_GRAY2RGB)
     
     provider = ['CPUExecutionProvider']
-    model = rt.InferenceSession(r"C:\Users\jmatewkx\OneDrive - Intel Corporation\Desktop\Studia\_Flower_match_\emotions_detection\service\core\logic\resnet_18_onnx.onnx", providers=provider)
+    model = rt.InferenceSession(r"C:\Users\hp\Studia\Projekt\model\resnet18\resnet_18_onnx.onnx", providers=provider)
 
     test_image = cv2.resize(img_array, (256, 256))
     im = np.float32(test_image)

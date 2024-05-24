@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flower Match</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Flower Match</h1>
+    </header>
+    <main>
+        <section class="upload">
+            {% if not image %}
+            <h2>Upload Image</h2>
+            <form method="post" action="/detect/" enctype="multipart/form-data">
+                <input type="file" name="flowerImage" required>
+                <button type="submit">Upload</button>
+            </form>
+            {% endif %}
+        </section>
+
+        <section>
+            {% if image %}
+            <h2>Uploaded Image</h2>
+                <div>
+                    <img src="data:image/png;base64,{{ image }}" alt="Uploaded Image" height="30%" width="30%">
+                </div>
+            {% endif %}
+        </section>
+
+        <section class="result">
+            {% if result %}
+            <h2>Result: {{ result }}</h2>
+            {% endif %}
+        </section>
+
+        <section class="examples">
+            <div class="gif-container">
+                <img src="/static/flower1.png" alt="Flower 1">
+                <img src="/static/flower2.gif" alt="Flower 2">
+                <img src="/static/flower3.png" alt="Flower 3">
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p><a href="https://github.com/JustynaMatewka/_Flower_Match_/tree/main"> &copy; Flower Match Justyna Mątewka </a></p>
+    </footer>
+</body>
+</html>
