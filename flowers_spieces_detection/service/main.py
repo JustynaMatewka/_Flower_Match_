@@ -7,7 +7,6 @@ from io import BytesIO
 import numpy as np
 import base64
 from service.core.logic.onnx_inference import flower_detector
-from service.core.schemas.output import APIOutput
 
 app = FastAPI(project_name="Flower species detection")
 
@@ -30,12 +29,15 @@ async def detect(request: Request, flowerImage: UploadFile = File(...)):
 
     result = flower_detector(image_np)
 
-    image.save(BytesIO(), format="PNG")
-    image_base64 = base64.b64encode(BytesIO().getvalue()).decode('utf-8')
+    buffered = BytesIO()
+    image.save(buffered, format="PNG")
+    image_base64 = base64.b64encode(buffered.getvalue()).decode('utf-8')
 
     context = {
         "request": request,
         "result": result["emotion"],
+        "plot": result["plot"],
+        "time": result["time"],
         "image": image_base64
     }
     return templates.TemplateResponse("index.html", context)
