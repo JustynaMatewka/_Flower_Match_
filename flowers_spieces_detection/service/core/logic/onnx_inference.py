@@ -10,7 +10,7 @@ def flower_detector(img_array):
     
     # Podłączenie modelu
     provider = ['CPUExecutionProvider']
-    model = rt.InferenceSession(r"C:\Users\jmatewkx\OneDrive - Intel Corporation\Desktop\Studia\_Flower_match_\flowers_spieces_detection\service\core\logic\resnet_18_onnx.onnx", providers=provider)
+    model = rt.InferenceSession(r"C:\Users\hp\Studia\Projekt\model\resnet18\resnet_18_onnx.onnx", providers=provider)
 
     # Obróbka zdjęcia
     test_image = cv2.resize(img_array, (256, 256))
